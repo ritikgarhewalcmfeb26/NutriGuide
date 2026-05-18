@@ -1,4 +1,21 @@
 const mysql = require('mysql2/promise');
+const fs = require('fs');
+const path = require('path');
+
+let sslConfig = null;
+if (process.env.DB_SSL === 'true') {
+    sslConfig = {
+        rejectUnauthorized: true
+    };
+    const caPath = process.env.DB_SSL_CA || path.join(__dirname, 'isrgrootx1.pem');
+    try {
+        if (fs.existsSync(caPath)) {
+            sslConfig.ca = fs.readFileSync(caPath);
+        }
+    } catch (err) {
+        console.error('Warning: Failed to load SSL CA certificate from ' + caPath, err);
+    }
+}
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
@@ -9,7 +26,7 @@ const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: true } : null
+    ssl: sslConfig
 });
 
 module.exports = pool;
