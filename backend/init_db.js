@@ -1,14 +1,15 @@
 const mysql = require('mysql2/promise');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
 async function initDB() {
     try {
         console.log('Connecting to MySQL...');
         const connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'pass@123',
+            host: process.env.DB_HOST || 'localhost',
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASSWORD || 'pass@123',
             multipleStatements: true
         });
 
