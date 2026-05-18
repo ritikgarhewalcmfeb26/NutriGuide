@@ -35,46 +35,46 @@ const Profile = () => {
 
   return (
     <div className="main-content">
-      <div className="banner bg-purple" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="banner" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1>Profile Settings</h1>
-          <p>Manage your health & fitness preferences</p>
+          <h1 style={{ color: 'var(--theme-text-main)' }}>Profile Settings</h1>
+          <p style={{ color: 'var(--theme-text-muted)' }}>Manage your health & fitness preferences</p>
         </div>
-        <button onClick={handleSave} disabled={saving} className="btn-primary" style={{ background: 'white', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <button onClick={handleSave} disabled={saving} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Save size={18} /> {saving ? 'Saving...' : 'Save Profile'}
         </button>
       </div>
 
       <div className="profile-section">
-        <div className="section-header" style={{ background: '#a855f7', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <User size={20} /> Personal Information
+        <div className="section-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <User size={20} color="var(--theme-primary)" /> Personal Information
         </div>
-        <div className="profile-body grid-2">
+        <div className="profile-body grid-2" style={{ padding: '1.5rem' }}>
           <div className="form-group">
             <label>Full Name</label>
             <div style={{ position: 'relative' }}>
-              <User size={18} color="var(--text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
+              <User size={18} color="var(--theme-text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
               <input type="text" name="name" value={formData.name} onChange={handleChange} style={{ paddingLeft: '2.5rem' }} />
             </div>
           </div>
           <div className="form-group">
             <label>Email</label>
             <div style={{ position: 'relative' }}>
-              <User size={18} color="var(--text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
+              <User size={18} color="var(--theme-text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
               <input type="email" value={user?.email || ''} style={{ paddingLeft: '2.5rem' }} readOnly />
             </div>
           </div>
           <div className="form-group">
             <label>Age</label>
             <div style={{ position: 'relative' }}>
-              <User size={18} color="var(--text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
+              <User size={18} color="var(--theme-text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
               <input type="number" name="age" value={formData.age} onChange={handleChange} placeholder="Enter age" style={{ paddingLeft: '2.5rem' }} />
             </div>
           </div>
           <div className="form-group">
             <label>Gender</label>
             <div style={{ position: 'relative' }}>
-              <User size={18} color="var(--text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
+              <User size={18} color="var(--theme-text-muted)" style={{ position: 'absolute', top: '12px', left: '12px' }} />
               <select style={{ paddingLeft: '2.5rem' }}>
                 <option>Male</option>
                 <option>Female</option>
@@ -86,10 +86,10 @@ const Profile = () => {
       </div>
 
       <div className="profile-section">
-        <div className="section-header bg-green" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Activity size={20} /> Health Metrics
+        <div className="section-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Activity size={20} color="var(--theme-accent)" /> Health Metrics
         </div>
-        <div className="profile-body" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+        <div className="profile-body" style={{ padding: '1.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
           <div className="form-group">
             <label>Height (cm)</label>
             <input type="number" name="height" value={formData.height} onChange={handleChange} placeholder="Enter height" />
@@ -106,10 +106,10 @@ const Profile = () => {
       </div>
 
       <div className="profile-section">
-        <div className="section-header bg-blue" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Target size={20} /> Fitness Goals & Activity
+        <div className="section-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Target size={20} color="var(--theme-secondary)" /> Fitness Goals & Activity
         </div>
-        <div className="profile-body grid-2">
+        <div className="profile-body grid-2" style={{ padding: '1.5rem' }}>
           <div className="form-group">
             <label>Fitness Goal</label>
             <select name="health_goal" value={formData.health_goal} onChange={handleChange}>
@@ -131,14 +131,14 @@ const Profile = () => {
       </div>
 
       <div className="profile-section">
-        <div className="section-header bg-orange" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Dumbbell size={20} /> Exercise Preferences
+        <div className="section-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Dumbbell size={20} color="var(--theme-primary)" /> Exercise Preferences
         </div>
-        <div className="profile-body">
+        <div className="profile-body" style={{ padding: '1.5rem' }}>
           <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Preferred Exercise Types</label>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
             {['cardio', 'strength', 'yoga', 'pilates', 'cycling', 'swimming', 'running', 'walking', 'sports', 'dance'].map(type => (
-              <span key={type} style={{ padding: '0.25rem 0.75rem', background: '#f1f5f9', borderRadius: '16px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>{type}</span>
+              <span key={type} style={{ padding: '0.25rem 0.75rem', background: 'var(--input-bg)', borderRadius: '16px', fontSize: '0.9rem', color: 'var(--theme-text-muted)' }}>{type}</span>
             ))}
           </div>
           <div className="grid-2">
@@ -155,10 +155,10 @@ const Profile = () => {
       </div>
 
       <div className="profile-section">
-        <div className="section-header bg-red" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Apple size={20} /> Dietary Preferences
+        <div className="section-header" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Apple size={20} color="var(--theme-danger)" /> Dietary Preferences
         </div>
-        <div className="profile-body">
+        <div className="profile-body" style={{ padding: '1.5rem' }}>
           <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>Diet Type</label>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
             {['none', 'vegan', 'vegetarian', 'keto'].map(type => (
@@ -167,12 +167,12 @@ const Profile = () => {
                 onClick={() => setFormData({ ...formData, diet_preference: type })}
                 style={{ 
                   padding: '0.25rem 0.75rem', 
-                  background: formData.diet_preference === type ? '#fee2e2' : '#f1f5f9', 
-                  color: formData.diet_preference === type ? '#ef4444' : 'var(--text-muted)',
-                  border: formData.diet_preference === type ? '1px solid #ef4444' : '1px solid transparent',
+                  background: formData.diet_preference === type ? 'var(--theme-primary)' : 'var(--input-bg)', 
+                  color: formData.diet_preference === type ? 'var(--theme-text-inverse)' : 'var(--theme-text-muted)',
                   borderRadius: '16px', 
                   fontSize: '0.9rem', 
-                  cursor: 'pointer' 
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
                 }}>
                 {type}
               </span>
@@ -180,7 +180,7 @@ const Profile = () => {
           </div>
           <div className="form-group">
             <label>Allergies & Restrictions</label>
-            <textarea style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-color)', borderRadius: '8px', background: '#f8fafc' }} rows="3" placeholder="Enter allergies separated by commas (e.g., peanuts, dairy, gluten)"></textarea>
+            <textarea style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--theme-border)', borderRadius: '12px', background: 'var(--input-bg)', color: 'var(--theme-text-main)' }} rows="3" placeholder="Enter allergies separated by commas (e.g., peanuts, dairy, gluten)"></textarea>
           </div>
         </div>
       </div>

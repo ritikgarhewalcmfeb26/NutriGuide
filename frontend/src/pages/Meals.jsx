@@ -36,47 +36,47 @@ const Meals = () => {
 
   return (
     <div className="main-content">
-      <div className="banner bg-green">
-        <h1>Meal Database</h1>
-        <p>Browse thousands of meals & log them instantly</p>
+      <div className="banner">
+        <h1 style={{ color: 'var(--theme-text-main)' }}>Meal Database</h1>
+        <p style={{ color: 'var(--theme-text-muted)', fontSize: '1.1rem' }}>Browse thousands of meals & log them instantly</p>
       </div>
 
-      <div className="card" style={{ marginBottom: '2rem', display: 'flex', gap: '1rem' }}>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', background: '#f8fafc', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '0.5rem 1rem' }}>
-          <Search size={20} color="var(--text-muted)" style={{ marginRight: '0.5rem' }} />
-          <input type="text" placeholder="Search meals..." style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', fontSize: '1rem' }} />
+      <div className="card" style={{ marginBottom: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', background: 'var(--input-bg)', border: '1px solid var(--theme-border)', borderRadius: '12px', padding: '0.5rem 1rem' }}>
+          <Search size={20} color="var(--theme-text-muted)" style={{ marginRight: '0.5rem' }} />
+          <input type="text" placeholder="Search meals..." style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', fontSize: '1rem', color: 'var(--theme-text-main)' }} />
         </div>
         <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Search</button>
-        <button className="btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-main)', borderColor: 'var(--border-color)' }}>
+        <button className="btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Filter size={20} /> Filters
         </button>
       </div>
 
-      <div style={{ borderBottom: '1px solid var(--border-color)', marginBottom: '2rem', display: 'flex', gap: '2rem' }}>
-        <button style={{ background: 'none', border: 'none', borderBottom: '2px solid var(--primary)', padding: '0.5rem 0', fontWeight: 'bold', color: 'var(--primary)', cursor: 'pointer' }}>All Meals ({meals.length})</button>
-        <button style={{ background: 'none', border: 'none', padding: '0.5rem 0', fontWeight: 'bold', color: 'var(--text-muted)', cursor: 'pointer' }}>Recommended (0)</button>
+      <div style={{ borderBottom: '1px solid var(--theme-border)', marginBottom: '2rem', display: 'flex', gap: '2rem' }}>
+        <button style={{ background: 'none', border: 'none', borderBottom: '2px solid var(--theme-primary)', padding: '0.5rem 0', fontWeight: 'bold', color: 'var(--theme-primary)', cursor: 'pointer' }}>All Meals ({meals.length})</button>
+        <button style={{ background: 'none', border: 'none', padding: '0.5rem 0', fontWeight: 'bold', color: 'var(--theme-text-muted)', cursor: 'pointer' }}>Recommended (0)</button>
       </div>
 
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '4rem', color: 'var(--text-muted)' }}>Loading meals...</div>
+        <div style={{ textAlign: 'center', padding: '4rem', color: 'var(--theme-text-muted)' }}>Loading meals...</div>
       ) : meals.length === 0 ? (
-        <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '4rem', color: 'var(--text-muted)' }}>
+        <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '4rem', color: 'var(--theme-text-muted)' }}>
           <ChefHat size={48} style={{ opacity: 0.3, marginBottom: '1rem' }} />
           <p>No meals found. Try adjusting your filters.</p>
         </div>
       ) : (
         <div className="grid-4">
           {meals.map(meal => (
-            <div key={meal.id} className="card" style={{ display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
-              <div style={{ width: '40px', height: '40px', background: '#dcfce7', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                <ChefHat color="#10b981" />
+            <div key={meal.id} className="card glow-accent" style={{ display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
+              <div className="icon-circle" style={{ width: '40px', height: '40px', marginBottom: '1rem', color: 'var(--theme-accent)' }}>
+                <ChefHat />
               </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-main)' }}>{meal.title}</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem', flexGrow: 1 }}>{meal.description}</p>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--theme-text-main)' }}>{meal.title}</h3>
+              <p style={{ color: 'var(--theme-text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem', flexGrow: 1 }}>{meal.description}</p>
               
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', marginBottom: '1rem', fontSize: '0.9rem', fontWeight: '600' }}>
-                <span style={{ color: '#ef4444' }}>🔥 {meal.calories} kcal</span>
-                <span style={{ color: '#3b82f6' }}>🥩 {meal.protein}g</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--theme-border)', paddingTop: '1rem', marginBottom: '1rem', fontSize: '0.9rem', fontWeight: '600' }}>
+                <span style={{ color: 'var(--theme-danger)' }}>🔥 {meal.calories} kcal</span>
+                <span style={{ color: 'var(--theme-secondary)' }}>🥩 {meal.protein}g</span>
               </div>
               
               <button onClick={() => handleLogMeal(meal.id)} className="btn-outline" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%' }}>
