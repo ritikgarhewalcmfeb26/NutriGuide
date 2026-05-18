@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Meals from './pages/Meals';
 import Progress from './pages/Progress';
 import Analytics from './pages/Analytics';
+import Landing from './pages/Landing';
 
 const ProtectedRoute = ({ children, requireAdmin }) => {
     const { user, loading } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const AppRoutes = () => {
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/meals" element={<ProtectedRoute><Meals /></ProtectedRoute>} />
             <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
